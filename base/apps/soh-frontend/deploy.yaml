@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saleor-frontend-stage
+  labels:
+    app: saleor-frontend-stage
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleor-frontend-stage
+  template:
+    metadata:
+      labels:
+        app: saleor-frontend-stage
+    spec:
+      containers:
+        - name: saleor-frontend
+          image: 476114148868.dkr.ecr.eu-west-2.amazonaws.com/saleor-frontend-staging
+          envFrom:
+            - configMapRef:
+                name: saleor-frontend-env-cm
+            - secretRef:
+                name: saleor-frontend-env-sec
+          ports:
+            - containerPort: 3000
+              name: http-saleor                   
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"

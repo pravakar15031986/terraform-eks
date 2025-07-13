@@ -1,0 +1,19 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: assessment-aws-secrets
+spec:
+  provider: aws
+  secretObjects:
+    - secretName: assessment-creds-sec
+      type: Opaque
+      data:
+        - objectName: "assessment-sec-alias"
+          key: assessment-creds
+
+  parameters:
+    objects: |
+        - objectName: "/app/assessment-api/qa"
+          objectType: "secretsmanager"  
+          objectAlias: "assessment-sec-alias"
+          objectVersionLabel: "AWSCURRENT"

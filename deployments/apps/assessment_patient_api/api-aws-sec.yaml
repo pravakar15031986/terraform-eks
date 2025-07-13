@@ -1,0 +1,19 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: assessment-patient-aws-secrets
+spec:
+  provider: aws
+  secretObjects:
+    - secretName: assessment-patient-creds-sec
+      type: Opaque
+      data:
+        - objectName: "assessment-patient-sec-alias"
+          key: assessment-pratient-creds
+
+  parameters:
+    objects: |
+        - objectName: "/app/assessment-patient-api/qa"
+          objectType: "secretsmanager"  
+          objectAlias: "assessment-patient-sec-alias"
+          objectVersionLabel: "AWSCURRENT"

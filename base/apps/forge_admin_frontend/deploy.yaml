@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forge-admin-frontend-stage
+  labels:
+    app: forge-admin-frontend-stage
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forge-admin-frontend-stage
+  template:
+    metadata:
+      labels:
+        app: forge-admin-frontend-stage
+    spec:
+      containers:
+        - name: forge-admin-frontend
+          image: 476114148868.dkr.ecr.eu-west-2.amazonaws.com/forge-admin-frontend-stage
+          envFrom:
+            - configMapRef:
+                name: forge-admin-frontend-env-cm
+            - secretRef:
+                name: forge-admin-frontend-env-sec
+          ports:
+            - containerPort: 3000
+              name: http-admin               
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "1024Mi"

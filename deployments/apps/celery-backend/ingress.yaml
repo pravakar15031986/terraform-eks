@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: saleor-celery-http-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+  - host: soh-stg.simpleonlinehealthcare.co.uk
+    http:
+      paths:
+      - path: /graphql/
+        pathType: Prefix
+        backend:
+          service:
+            name: saleor-celery-staging
+            port:
+              number: 80

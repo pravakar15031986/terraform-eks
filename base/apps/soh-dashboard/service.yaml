@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: saleor-dashboard-qa
+  labels:
+    app: saleor-dashboard-qa
+spec:
+  type: ClusterIP
+  ports:
+  - name: http-saleor
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: saleor-dashboard-qa

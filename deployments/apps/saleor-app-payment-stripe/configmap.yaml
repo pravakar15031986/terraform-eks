@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: saleor-payment-env-cm
+data:
+  NODE_ENV: DEVELOPMENT
+  SALEOR_API_URL: https://dev-graphql.simpleonlinehealthcare.co.uk/

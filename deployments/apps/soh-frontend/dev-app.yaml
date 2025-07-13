@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: saleor-frontend-stage
+  namespace: argocd
+spec:
+  project: forge-stage
+  source:
+    repoURL: 'https://github.com/Simple-Online-Healthcare/forge_k8s_manifests.git'
+    path: deployments/apps/soh-frontend
+    targetRevision: deploy-stage
+    directory:
+      recurse: false
+      jsonnet: {}
+  destination:
+    namespace: saleor-frontend-stage
+    name: forge-staging
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true    
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saleor-dashboard-qa
+  labels:
+    app: saleor-dashboard-qa
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleor-dashboard-qa
+  template:
+    metadata:
+      labels:
+        app: saleor-dashboard-qa
+    spec:
+      containers:
+        - name: saleor-dashboard
+          image: 476114148868.dkr.ecr.eu-west-2.amazonaws.com/saleor-dashboard-qa
+          envFrom:
+            - configMapRef:
+                name: saleor-dashboard-env-cm-qa
+            - secretRef:
+                name: saleor-dashboard-env-sec-qa
+          ports:
+            - containerPort: 80
+              name: http-saleor                   
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "1024Mi"

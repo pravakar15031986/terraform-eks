@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: saleor-frontend-env-cm
+data:
+  NODE_ENV: DEVELOPMENT
+  NEXT_PUBLIC_SALEOR_API_URL: https://dev-graphql.simpleonlinehealthcare.co.uk/
+  NEXT_PUBLIC_STOREFRONT_URL: https://soh-stage.simpleonlinehealthcare.co.uk/

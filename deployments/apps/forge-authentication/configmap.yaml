@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forge-authentication-env-cm
+data:
+  NODE_ENV: development
+  DB_HOST: forge-dev-database.c3eewy88e76c.eu-west-2.rds.amazonaws.com
+  DB_PORT: "5432"
+  DB_NAME: authentication
+  DB_USERNAME: devadminforge
+  DB_PASSWORD: 3fz7UdID4H8N9JD
+  DB_DIALECT: postgres
+  HOST: localhost
+  PORT: "9000"
+  SWAGGER_UNAME: forge-assessment-admin
+  SWAGGER_PASSWORD: "forge-assessment-admin-12345"
+  BASE_URL_MISCELLANEOUS_SYSTEM: https://global-api-dev.simpleonlinehealthcare.co.uk/api
+  MAX_QUESTION_LEVEL: "5"
+  MAX_QUESTION_CHILDREN: "5"

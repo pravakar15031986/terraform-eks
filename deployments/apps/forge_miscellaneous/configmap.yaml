@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forge-miscellaneous-env-cm
+data:
+  NODE_ENV: development
+  NEXT_PUBLIC_SALEOR_API_URL: https://soh-dev.simpleonlinehealthcare.co.uk/graphql/
+  NEXT_PUBLIC_STOREFRONT_URL: https://soh-dev.simpleonlinehealthcare.co.uk/
+
+  DB_HOST: forge-dev-database.c3eewy88e76c.eu-west-2.rds.amazonaws.com
+  DB_PORT: "5432"
+  DB_USERNAME: devadminforge
+  DB_NAME: forge_miscellaneous
+  DB_DIALECT: postgres
+  HOST: localhost
+  PORT: "9000"
+  SWAGGER_UNAME: forge-miscellaneous-admin
+  SWAGGER_PASSWORD: forge-miscellaneous-admin-12345
+  NEXT_PUBLIC_COUNTRY_API_URL: https://global-api-dev.simpleonlinehealthcare.co.uk/api

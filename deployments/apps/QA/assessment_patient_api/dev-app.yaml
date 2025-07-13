@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: assessment-patient-api-develop
+  namespace: argocd
+spec:
+  project: sop-develop
+  source:
+    repoURL: 'https://github.com/Simple-Online-Healthcare/forge_k8s_manifests.git'
+    path: deployments/apps/assessment_patient_api
+    targetRevision: deploy-develop
+    directory:
+      recurse: false
+      jsonnet: {}
+  destination:
+    namespace: assessment-patient-api-develop
+    name: eks-forge-dev-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true    
+    syncOptions:
+      - CreateNamespace=true

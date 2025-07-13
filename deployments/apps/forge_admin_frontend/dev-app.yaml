@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forge-admin-frontend-stage
+  namespace: argocd
+spec:
+  project: sop-staging
+  source:
+    repoURL: 'https://github.com/Simple-Online-Healthcare/forge_k8s_manifests.git'
+    path: deployments/apps/forge_admin_frontend
+    targetRevision: deploy-stage
+    directory:
+      recurse: false
+      jsonnet: {}
+  destination:
+    namespace: forge-admin-frontend-stage
+    name: forge-staging
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true    
+    syncOptions:
+      - CreateNamespace=true
