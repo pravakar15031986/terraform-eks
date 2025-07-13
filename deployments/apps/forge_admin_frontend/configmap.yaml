@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: forge-admin-frontend-env-cm
-data:
-  NEXT_PUBLIC_URL: https://admin-dev.simpleonlinehealthcare.co.uk/
-  NPM_RC: "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}\n\n@simple-online-healthcare:registry=https://npm.pkg.github.com\n"
-  NEXT_PUBLIC_API_URL: https://assessment-api-stage.simpleonlinehealthcare.co.uk
-  NEXT_PUBLIC_MISCELLANEOUS_API_URL: https://global-api-dev.simpleonlinehealthcare.co.uk
